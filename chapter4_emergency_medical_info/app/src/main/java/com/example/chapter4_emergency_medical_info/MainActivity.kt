@@ -2,8 +2,10 @@ package com.example.chapter4_emergency_medical_info
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.chapter4_emergency_medical_info.databinding.ActivityMainBinding
 
@@ -21,6 +23,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         getDataAndUiUpdate()
+
+        binding.deleteButton.setOnClickListener {
+            deleteData()
+        }
+
+        binding.emergencyContactLayer.setOnClickListener {
+            with(Intent(Intent.ACTION_VIEW)) {
+                val phoneNumber = binding.emergencyContactValueTextView.text.toString()
+                    .replace("-", "")
+                data = Uri.parse("tel:$phoneNumber")
+                startActivity(this)
+            }
+        }
     }
 
     override fun onResume() {
@@ -41,5 +56,14 @@ class MainActivity : AppCompatActivity() {
                 binding.warningValueTextView.text = warning
             }
         }
+    }
+
+    private fun deleteData() {
+        with(getSharedPreferences(USER_INFORMATION, MODE_PRIVATE).edit()) {
+            clear()
+            apply()
+            getDataAndUiUpdate()
+        }
+        Toast.makeText(this, "초기화를 완료했습니다.", Toast.LENGTH_SHORT).show()
     }
 }

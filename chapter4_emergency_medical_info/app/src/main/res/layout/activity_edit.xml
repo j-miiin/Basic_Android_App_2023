@@ -42,7 +42,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="0000-00-00"
-        android:inputType="phone"
         app:layout_constraintBaseline_toBaselineOf="@id/birthdateTextView"
         app:layout_constraintEnd_toStartOf="@id/birthdateImageView"
         app:layout_constraintStart_toStartOf="@id/guideLine" />
@@ -115,6 +114,7 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:hint="010-1234-5678"
+        android:inputType="phone"
         app:layout_constraintBaseline_toBaselineOf="@id/emergencyContactTextView"
         app:layout_constraintEnd_toEndOf="@id/nameEditTextView"
         app:layout_constraintStart_toStartOf="@id/guideLine" />
