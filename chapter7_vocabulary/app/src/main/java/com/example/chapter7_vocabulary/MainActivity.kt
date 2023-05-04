@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
     private lateinit var wordAdpater: WordAdapter
     private var selectedWord: Word? = null
 
+    private val imageLoadLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) {
+
+    }
+
     private val updateAddWordResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
