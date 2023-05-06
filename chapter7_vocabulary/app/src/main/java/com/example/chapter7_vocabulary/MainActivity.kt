@@ -1,6 +1,7 @@
 package com.example.chapter7_vocabulary
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -14,8 +15,8 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
     private lateinit var wordAdpater: WordAdapter
     private var selectedWord: Word? = null
 
-    private val imageLoadLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) {
-
+    private val imageLoadLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uriList ->
+        updateImages(uriList)
     }
 
     private val updateAddWordResult = registerForActivityResult(
@@ -123,5 +124,9 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
 
         val intent = Intent(this, AddActivity::class.java).putExtra("originWord", selectedWord)
         updateEditWordResult.launch(intent)
+    }
+
+    private fun updateImages(uriList: List<Uri>) {
+
     }
 }
