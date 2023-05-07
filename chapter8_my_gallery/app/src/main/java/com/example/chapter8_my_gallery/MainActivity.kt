@@ -1,9 +1,11 @@
 package com.example.chapter8_my_gallery
 
 import android.content.pm.PackageManager
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -11,6 +13,10 @@ import com.example.chapter8_my_gallery.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    private val imageLoadLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uriList ->
+        updateImages(uriList)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +67,10 @@ class MainActivity : AppCompatActivity() {
             arrayOf(android.Manifest.permission.READ_MEDIA_IMAGES),
             REQUEST_READ_MEDIA_IMAGES
         )
+    }
+
+    private fun updateImages(uriList: List<Uri>) {
+
     }
 
     companion object {

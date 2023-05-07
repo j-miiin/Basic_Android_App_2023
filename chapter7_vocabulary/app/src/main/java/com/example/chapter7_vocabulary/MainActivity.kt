@@ -15,10 +15,6 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
     private lateinit var wordAdpater: WordAdapter
     private var selectedWord: Word? = null
 
-    private val imageLoadLauncher = registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uriList ->
-        updateImages(uriList)
-    }
-
     private val updateAddWordResult = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -124,9 +120,5 @@ class MainActivity : AppCompatActivity(), WordAdapter.ItemClickListener {
 
         val intent = Intent(this, AddActivity::class.java).putExtra("originWord", selectedWord)
         updateEditWordResult.launch(intent)
-    }
-
-    private fun updateImages(uriList: List<Uri>) {
-
     }
 }
